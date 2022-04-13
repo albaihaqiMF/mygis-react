@@ -1,4 +1,5 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
+const tailwindcss = require("tailwindcss");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,15 +12,23 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js("resources/js/app.js", "public/js")
+    .js("resources/js/ckeditor-classic.js", "public/js")
+    .js("resources/js/ckeditor-inline.js", "public/js")
+    .js("resources/js/ckeditor-balloon.js", "public/js")
+    .js("resources/js/ckeditor-balloon-block.js", "public/js")
+    .js("resources/js/ckeditor-document.js", "public/js")
     .react()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ])
+    .sass("resources/sass/app.scss", "public/css")
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss("./tailwind.config.js")],
+    })
+    .autoload({
+        "cash-dom": ["cash"],
+    })
     .alias({
-        '@': 'resources/js',
+        "@": "resources/js",
     });
 
 if (mix.inProduction()) {
