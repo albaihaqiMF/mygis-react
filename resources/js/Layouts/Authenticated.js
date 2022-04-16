@@ -1,7 +1,9 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import MobileMenu from "@/Components/MobileMenu";
 import SideMenu from "@/Components/SideMenu";
+import { Link } from "@inertiajs/inertia-react";
 import React, { useState } from "react";
+import { Bell } from "react-feather";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -13,12 +15,15 @@ export default function Authenticated({ auth, header, children }) {
             <div>
                 <div className="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
                     <div className="h-full flex items-center">
-                        <a href="" className="-intro-x hidden md:flex">
-                            <ApplicationLogo />
+                        <Link
+                            href="/dashboard"
+                            className="-intro-x hidden md:flex"
+                        >
+                            <ApplicationLogo className={`w-12 h-12`} />
                             <span className="text-white text-lg ml-3">
                                 Ice<span className="font-medium">wall</span>
                             </span>
-                        </a>
+                        </Link>
                         <div className="-intro-x breadcrumb mr-auto">
                             <a href="">Application</a>
                             <svg
@@ -258,20 +263,7 @@ export default function Authenticated({ auth, header, children }) {
                                 role="button"
                                 aria-expanded="false"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                                    />
-                                </svg>
+                                <Bell />
                             </div>
                             <div className="notification-content pt-2 dropdown-menu">
                                 <div className="notification-content__box dropdown-menu__content box dark:bg-dark-6">
